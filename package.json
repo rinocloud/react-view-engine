@@ -1,0 +1,31 @@
+{
+  "name": "react-view-engine",
+  "version": "1.0.0",
+  "description": "An express.js view engine for server and client side react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/eoinmurray/react-view-engine"
+  },
+  "keywords": [
+    "react.js",
+    "express.js",
+    "views",
+    "server",
+    "client",
+    "server-side-rendering"
+  ],
+  "dependencies" : {
+    "connect-inject" : "^0.3.2",
+    "react": "~0.12.0",
+    },
+  "author": "eoinmurray",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eoinmurray/react-view-engine/issues"
+  },
+  "homepage": "https://github.com/eoinmurray/react-view-engine"
+}
