@@ -11,6 +11,10 @@ then in your express ```app.js```
     engine.initJSX()
 
     app.engine('js', engine.engine);
+    
+    //normal express view stuff
+    app.set('views', path.join(__dirname, 'public', 'javascripts'));
+    app.set('view engine', 'js');
     app.use(engine.handler);
 
 from then on you can use the normal ```res.render``` function of express.
