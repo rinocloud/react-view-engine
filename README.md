@@ -5,17 +5,18 @@ This is a library for allowing server and client side rendering of react compone
 
 then in your express ```app.js```
 
-    var engine = require('./react-view-engine');
+    var engine = require('react-view-engine');
 
-    //Use this function to initialize node-jsx, if your react files are .jsx
+    // Use this function to initialize node-jsx, if your react files are .jsx
     engine.initJSX()
+    //Or use Babel-register
+    // require('babel-register')
 
     app.engine('js', engine.engine);
     
-    //normal express view stuff
+    // Normal express view stuff
     app.set('views', path.join(__dirname, 'public', 'javascripts'));
-    app.set('view engine', 'js');
-    app.use(engine.handler);
+    app.set('view engine', 'jsx');
 
 from then on you can use the normal ```res.render``` function of express.
 
