@@ -40,7 +40,7 @@ function handler(html, name, options){
             'delete App',
         '}',
         "window.addEventListener('load', function(){",
-            "loadProps("+ name + ")",
+            "loadProps('"+ name + "')",
         "})",
         '</script>'
     ].join('\n')
