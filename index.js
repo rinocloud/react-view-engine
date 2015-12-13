@@ -34,7 +34,7 @@ function handler(html, name, options){
         '<script>',
         'window.loadProps = function(name){',
             'var React = require("react")',
-            'var Component = React.createFactory(require("./" + name));',
+            'var Component = React.createFactory(require("components")("./" + name));',
             'var props = JSON.parse(document.getElementById("props_" + name).innerHTML)',
             'React.render(Component(props), document);',
             'delete App',
