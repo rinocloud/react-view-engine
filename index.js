@@ -14,7 +14,7 @@ function getComponent(file){
     }
 }
 exports = module.exports = loader = {
-    setLayout: function(l) { layout = l }
+    setLayout: function(l) { layout = l },
     list : [],
 
     initJSX : function(){
@@ -25,7 +25,7 @@ exports = module.exports = loader = {
         delete require.cache[require.resolve(filePath)]
         
         if(layout){
-            var layoutPath = path.join(options.settings.path, layout)
+            var layoutPath = path.join(options.settings.views, layout)
             delete require.cache[require.resolve(layoutPath)]
             var Layout = getComponent(layoutPath)
         }
