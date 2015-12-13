@@ -35,7 +35,7 @@ function handler(html, name, options){
         'window.loadProps = function(name){',
             'var React = require("react")',
             'var ReactDOM = require("react-dom")',
-            'var Layout = require("components")("./"'+layout+")",
+            'var Layout = require("components")("./'+layout+'")',
             'var Component = React.createElement( require("components")("./" + name), props)',
             'var props = JSON.parse(document.getElementById("props_" + name).innerHTML)',
             'ReactDOM.render(React.createElement(Layout, props, Component), document)',
