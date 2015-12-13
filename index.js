@@ -46,8 +46,8 @@ exports = module.exports = loader = {
         
         var data = cleanOptions(options)
         var clientApp = react.createFactory(client)(data)
-        var Template = Layout ? Layout(data, clientApp) : clientApp
-        var name = client.displayName;
+        var Template = Layout ? react.createFactory(Layout)(data, clientApp) : clientApp
+        var name = client.name;
         var markup = react.renderToString(Template);
 
         var props = '<script type="application/json" id="props_'+name+'">'+JSON.stringify(options)+'</script>'
