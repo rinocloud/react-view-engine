@@ -5,7 +5,7 @@ var path        = require('path')
 var fs          = require('fs')
 var layout
 
-function import(file){
+function getComponent(file){
     var r = require(file);
     if(r.__esModule && r.default){
         return r.default
@@ -27,15 +27,15 @@ exports = module.exports = loader = {
         if(layout){
             var layoutPath = path.join(options.settings.path, layout)
             delete require.cache[require.resolve(layoutPath)]
-            var Layout = import(layoutPath)
+            var Layout = getComponent(layoutPath)
         }
         
-        var client = import(filePath)
+        var client = getComponent(filePath)
         
         
         delete options['settings']
         var clientApp = react.createFactory(client)(options)
-        vat Template = Layout ? Layout(options, clientApp) : clientApp
+        var Template = Layout ? Layout(options, clientApp) : clientApp
         var name = client.displayName;
         var markup = react.renderToString(Template);
 
