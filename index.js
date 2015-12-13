@@ -13,6 +13,17 @@ function getComponent(file){
         return r
     }
 }
+
+function cleanOptions(options){
+    var opts = options
+    delete opts['settings']
+    delete opts['_locals']
+    delete opts['_csrf']
+    delete opts['enrouten']
+    delete opts['cache']
+    return opts
+}
+
 exports = module.exports = loader = {
     setLayout: function(l) { layout = l },
     list : [],
@@ -33,9 +44,9 @@ exports = module.exports = loader = {
         var client = getComponent(filePath)
         
         
-        delete options['settings']
-        var clientApp = react.createFactory(client)(options)
-        var Template = Layout ? Layout(options, clientApp) : clientApp
+        var data = cleanOptions(options)
+        var clientApp = react.createFactory(client)(data)
+        var Template = Layout ? Layout(data, clientApp) : clientApp
         var name = client.displayName;
         var markup = react.renderToString(Template);
 
