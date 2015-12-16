@@ -1,75 +1,25 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
-2 info using npm@1.4.28
-3 info using node@v0.10.32
-4 verbose publish [ '.' ]
-5 verbose cache add [ '.', null ]
-6 verbose cache add name=undefined spec="." args=[".",null]
-7 verbose parsed url { protocol: null,
-7 verbose parsed url   slashes: null,
-7 verbose parsed url   auth: null,
-7 verbose parsed url   host: null,
-7 verbose parsed url   port: null,
-7 verbose parsed url   hostname: null,
-7 verbose parsed url   hash: null,
-7 verbose parsed url   search: null,
-7 verbose parsed url   query: null,
-7 verbose parsed url   pathname: '.',
-7 verbose parsed url   path: '.',
-7 verbose parsed url   href: '.' }
-8 silly lockFile 3a52ce78- .
-9 verbose lock . /Users/eoinmurray/.npm/3a52ce78-.lock
-10 verbose tar pack [ '/Users/eoinmurray/.npm/react-view-engine/1.0.0/package.tgz',
-10 verbose tar pack   '.' ]
-11 verbose tarball /Users/eoinmurray/.npm/react-view-engine/1.0.0/package.tgz
-12 verbose folder .
-13 info prepublish react-view-engine@1.0.0
-14 silly lockFile 1f1177db-tar tar://.
-15 verbose lock tar://. /Users/eoinmurray/.npm/1f1177db-tar.lock
-16 silly lockFile 87b794f5-ct-view-engine-1-0-0-package-tgz tar:///Users/eoinmurray/.npm/react-view-engine/1.0.0/package.tgz
-17 verbose lock tar:///Users/eoinmurray/.npm/react-view-engine/1.0.0/package.tgz /Users/eoinmurray/.npm/87b794f5-ct-view-engine-1-0-0-package-tgz.lock
-18 silly lockFile 1f1177db-tar tar://.
-19 silly lockFile 1f1177db-tar tar://.
-20 silly lockFile 87b794f5-ct-view-engine-1-0-0-package-tgz tar:///Users/eoinmurray/.npm/react-view-engine/1.0.0/package.tgz
-21 silly lockFile 87b794f5-ct-view-engine-1-0-0-package-tgz tar:///Users/eoinmurray/.npm/react-view-engine/1.0.0/package.tgz
-22 silly lockFile b5516c92--react-view-engine-1-0-0-package /Users/eoinmurray/.npm/react-view-engine/1.0.0/package
-23 verbose lock /Users/eoinmurray/.npm/react-view-engine/1.0.0/package /Users/eoinmurray/.npm/b5516c92--react-view-engine-1-0-0-package.lock
-24 silly lockFile b5516c92--react-view-engine-1-0-0-package /Users/eoinmurray/.npm/react-view-engine/1.0.0/package
-25 silly lockFile b5516c92--react-view-engine-1-0-0-package /Users/eoinmurray/.npm/react-view-engine/1.0.0/package
-26 silly lockFile 3a52ce78- .
-27 silly lockFile 3a52ce78- .
-28 silly publish { name: 'react-view-engine',
-28 silly publish   version: '1.0.0',
-28 silly publish   description: 'An express.js view engine for server and client side react',
-28 silly publish   main: 'index.js',
-28 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
-28 silly publish   repository:
-28 silly publish    { type: 'git',
-28 silly publish      url: 'http://github.com/eoinmurray/react-view-engine' },
-28 silly publish   keywords:
-28 silly publish    [ 'react.js',
-28 silly publish      'express.js',
-28 silly publish      'views',
-28 silly publish      'server',
-28 silly publish      'client',
-28 silly publish      'server-side-rendering' ],
-28 silly publish   dependencies: { 'connect-inject': '^0.3.2', react: '~0.12.0' },
-28 silly publish   author: { name: 'eoinmurray' },
-28 silly publish   license: 'ISC',
-28 silly publish   bugs: { url: 'https://github.com/eoinmurray/react-view-engine/issues' },
-28 silly publish   homepage: 'https://github.com/eoinmurray/react-view-engine',
-28 silly publish   readme: '\nThis is a library for allowing server and client side rendering of react components.\n\n',
-28 silly publish   readmeFilename: 'README.md',
-28 silly publish   gitHead: 'a81fb6e59b86ea75c3b8d1efa291aa4137ad113f',
-28 silly publish   _id: 'react-view-engine@1.0.0',
-28 silly publish   _shasum: '6d03e3be4e5176cb1182f3cb67b5505dbf5b011b',
-28 silly publish   _from: '.' }
-29 error need auth auth and email required for publishing
-29 error need auth You need to authorize this machine using `npm adduser`
-30 error System Darwin 13.1.0
-31 error command "node" "/usr/local/bin/npm" "publish"
-32 error cwd /Users/eoinmurray/Documents/Dropbox/projects/react-view-engine
-33 error node -v v0.10.32
-34 error npm -v 1.4.28
-35 error code ENEEDAUTH
-36 verbose exit [ 1, true ]
+1 verbose cli [ '/home/joel/.nvm/versions/node/v4.2.2/bin/node',
+1 verbose cli   '/home/joel/.nvm/versions/node/v4.2.2/bin/npm',
+1 verbose cli   'start' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.2
+4 verbose stack Error: missing script: start
+4 verbose stack     at run (/home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/lib/run-script.js:142:19)
+4 verbose stack     at /home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/lib/run-script.js:58:5
+4 verbose stack     at /home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:345:5
+4 verbose stack     at checkBinReferences_ (/home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:309:45)
+4 verbose stack     at final (/home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:343:3)
+4 verbose stack     at then (/home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:113:5)
+4 verbose stack     at /home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/read-package-json/read-json.js:300:12
+4 verbose stack     at /home/joel/.nvm/versions/node/v4.2.2/lib/node_modules/npm/node_modules/graceful-fs/graceful-fs.js:76:16
+4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:380:3)
+5 verbose cwd /home/joel/LiveBy/react-view-engine
+6 error Linux 4.2.0-19-generic
+7 error argv "/home/joel/.nvm/versions/node/v4.2.2/bin/node" "/home/joel/.nvm/versions/node/v4.2.2/bin/npm" "start"
+8 error node v4.2.2
+9 error npm  v2.14.7
+10 error missing script: start
+11 error If you need help, you may report this error at:
+11 error     <https://github.com/npm/npm/issues>
+12 verbose exit [ 1, true ]
