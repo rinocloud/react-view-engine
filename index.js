@@ -73,7 +73,7 @@ exports = module.exports = loader = {
         var data = cleanOptions(options)
         var clientApp = React.createFactory(client)(data)
         var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
-        var name = client.name;
+        var name = filePath.replace(options.settings.views+'/', '');
         var markup = ReactDOMServer.renderToString(Template);
         markup = '<!DOCTYPE html>' + handler(markup, client.name, options)
 
