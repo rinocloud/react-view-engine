@@ -10,6 +10,6 @@ function View(name, options){
 //	return options
 }
 View.prototype.render = function(options, callback){
-	this.defaultEngine(this.path, options, callback)
+	this.engines[this.defaultEngine](this.path, options, callback)
 }
 module.exports = View
