@@ -79,7 +79,7 @@ exports = module.exports = loader = {
         var data = cleanOptions(options)
         var clientApp = React.createFactory(client)(data)
         var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
-        var markup = ReactDOMServer.renderToString(Template)
+        var markup = render(Template)
         markup = '<!DOCTYPE html>' + handler(markup, name, options)
 
         return callback(null, markup)
