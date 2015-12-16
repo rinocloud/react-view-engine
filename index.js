@@ -69,12 +69,17 @@ exports = module.exports = loader = {
         
         var client = getComponent(filePath)
         
-        
+  	if(options.noHashes){
+		var render = ReactDOMServer.renderToStaticMarkup
+	} else {
+		var render = ReactDOMServer.renderToString
+	}
+
         var name = filePath.replace(options.settings.views+'/', '');
         var data = cleanOptions(options)
         var clientApp = React.createFactory(client)(data)
         var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
-        var markup = ReactDOMServer.renderToString(Template);
+        var markup = ReactDOMServer.renderToString(Template)
         markup = '<!DOCTYPE html>' + handler(markup, name, options)
 
         return callback(null, markup)
