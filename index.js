@@ -5,6 +5,7 @@ var inject = require('connect-inject')
 var path = require('path')
 var fs = require('fs')
 var layout
+var View = require('./view')
 
 function getComponent(file){
     var r = require(file);
@@ -52,7 +53,7 @@ function handler(html, name, options){
 exports = module.exports = loader = {
     setLayout: function(l) { layout = l },
     list : [],
-
+    view: View,
     initJSX : function(){
         return require('node-jsx').install();
     },
