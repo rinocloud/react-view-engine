@@ -34,15 +34,15 @@ function handler(html, name, options){
         '</script>',
         '<script>',
         'window.loadProps = function(name){',
-            'var React = require("react")',
-            'var ReactDOM = require("react-dom")',
-            'var Layout = require("components")("./'+layout+'")',
-            'var props = JSON.parse(document.getElementById("props_" + name).innerHTML)',
-            'var Component = React.createElement( require("components")("./" + name), props)',
-            'ReactDOM.render(React.createElement(Layout, props, Component), document)',
+        '   var React = require("react")',
+        '   var ReactDOM = require("react-dom")',
+        '   var Layout = require("components")("./'+layout+'")',
+        '   var props = JSON.parse(document.getElementById("props_" + name).innerHTML)',
+        '   var Component = React.createElement( require("components")("./" + name), props)',
+        '   ReactDOM.render(React.createElement(Layout, props, Component), document)',
         '}',
         "window.addEventListener('load', function(){",
-            "loadProps('"+ name + "')",
+        "   loadProps('"+ name + "')",
         "})",
         '</script>'
     ].join('\n')
@@ -79,7 +79,7 @@ exports = module.exports = loader = {
         var data = cleanOptions(options)
         var clientApp = React.createFactory(client)(data)
         var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
-        var markup = ReactDOMServer.renderToString(Template)
+        var markup = render(Template)
         markup = '<!DOCTYPE html>' + handler(markup, name, options)
 
         return callback(null, markup)
