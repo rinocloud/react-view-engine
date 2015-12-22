@@ -33,16 +33,8 @@ function handler(html, name, options){
             JSON.stringify(options),
         '</script>',
         '<script>',
-        'window.loadProps = function(name){',
-            'var React = require("react")',
-            'var ReactDOM = require("react-dom")',
-            'var Layout = require("components")("./'+layout+'")',
-            'var props = JSON.parse(document.getElementById("props_" + name).innerHTML)',
-            'var Component = React.createElement( require("components")("./" + name), props)',
-            'ReactDOM.render(React.createElement(Layout, props, Component), document)',
-        '}',
         "window.addEventListener('load', function(){",
-            "loadProps('"+ name + "')",
+        "    loadProps('" + name + "', '"  + layout + "')",
         "})",
         '</script>'
     ].join('\n')
