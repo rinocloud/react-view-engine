@@ -33,7 +33,7 @@ function handler(html, name, options){
             JSON.stringify(options),
         '</script>',
         '<script>',
-        "window.addEventListener('load', function(){",
+        "window.addEventListener('DOMContentLoaded', function(){",
         "    loadProps('" + name + "', '"  + layout + "')",
         "})",
         '</script>'
