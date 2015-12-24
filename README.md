@@ -22,7 +22,7 @@ from then on you can use the normal ```res.render``` function of express.
 
 The react view must be loaded normally to the clientside somewhere.
 
-In your react view you must add the ```loadProps(View, View.displayName)``` if you want to load the view props on the clientside.
+In your react app you must add the ```loadProps(View, layout)``` function to the global object if you want to load the view props on the clientside.
 
     /**
      * @jsx React.DOM
