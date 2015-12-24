@@ -10,14 +10,14 @@ then in your express ```app.js```
     // Use this function to initialize node-jsx, if your react files are .jsx
     engine.initJSX()
     //Or use Babel-register
-    // require('babel-register')
+    // require('babel-register')({extensions: ['js', 'jsx']})
 
     app.engine('js', engine.engine);
     
     // Normal express view stuff
     app.set('views', path.join(__dirname, 'public', 'javascripts'));
     app.set('view engine', 'jsx');
-
+    app.set('view', engine.view)
 from then on you can use the normal ```res.render``` function of express.
 
 The react view must be loaded normally to the clientside somewhere.
