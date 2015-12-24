@@ -26,6 +26,7 @@ In your react view you must add the ```loadProps(View, View.displayName)``` if y
 
     /**
      * @jsx React.DOM
+     * client-app.jsx
     */
 
     var React = require('react');
@@ -47,8 +48,17 @@ In your react view you must add the ```loadProps(View, View.displayName)``` if y
 
     module.exports = ClientApp;
 
-    if(typeof window != "undefined"){
-      window.addEventListener('load', function(){
-        loadProps(ClientApp, ClientApp.displayName)
-      })
+
+
+    /**
+     * app.jsx
+    */
+    var ClientApp = require('./client-app');
+    var layout = require('./layout');
+    var ReactDOM = require('react-dom');
+    var React = require('react');
+
+    function loadProps(name, layout){
+        var rootComponent = require('./'+name);
+        ReactDOM.render(<rootComponent />, document)
     }
