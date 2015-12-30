@@ -34,7 +34,8 @@ function handler(html, name, options){
         '</script>',
         '<script>',
         "window.addEventListener('load', function(){",
-        "    loadProps('" + name + "', '"  + layout + "')",
+        "    var props = JSON.parse(document.getElementById('props_" + name + "').innerHTML)"
+        "    loadProps('" + name + "', '"  + layout + "', props)",
         "})",
         '</script>'
     ].join('\n')
