@@ -10,22 +10,23 @@ then in your express ```app.js```
     // Use this function to initialize node-jsx, if your react files are .jsx
     engine.initJSX()
     //Or use Babel-register
-    // require('babel-register')
+    // require('babel-register')({extensions: ['js', 'jsx']})
 
     app.engine('js', engine.engine);
     
     // Normal express view stuff
     app.set('views', path.join(__dirname, 'public', 'javascripts'));
     app.set('view engine', 'jsx');
-
+    app.set('view', engine.view)
 from then on you can use the normal ```res.render``` function of express.
 
 The react view must be loaded normally to the clientside somewhere.
 
-In your react view you must add the ```loadProps(View, View.displayName)``` if you want to load the view props on the clientside.
+In your react app you must add the ```loadProps(View, layout)``` function to the global object if you want to load the view props on the clientside.
 
     /**
      * @jsx React.DOM
+     * client-app.jsx
     */
 
     var React = require('react');
@@ -47,8 +48,17 @@ In your react view you must add the ```loadProps(View, View.displayName)``` if y
 
     module.exports = ClientApp;
 
-    if(typeof window != "undefined"){
-      window.addEventListener('load', function(){
-        loadProps(ClientApp, ClientApp.displayName)
-      })
+
+
+    /**
+     * app.jsx
+    */
+    var ClientApp = require('./client-app');
+    var layout = require('./layout');
+    var ReactDOM = require('react-dom');
+    var React = require('react');
+
+    function loadProps(name, layout){
+        var rootComponent = require('./'+name);
+        ReactDOM.render(<rootComponent />, document)
     }
