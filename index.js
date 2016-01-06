@@ -55,7 +55,7 @@ exports = module.exports = loader = {
         delete require.cache[require.resolve(filePath)]
         
         if(layout){
-            var layoutPath = path.join(options.settings.views, layout)
+            var layoutPath = path.join(path.resolve(options.settings.views), layout)
             delete require.cache[require.resolve(layoutPath)]
             var Layout = getComponent(layoutPath)
         }
@@ -68,7 +68,7 @@ exports = module.exports = loader = {
 		var render = ReactDOMServer.renderToString
 	}
 
-        var name = filePath.replace(options.settings.views+'/', '');
+        var name = filePath.replace(path.resolve(options.settings.views)+'/', '');
         var data = cleanOptions(options)
         var clientApp = React.createFactory(client)(data)
         var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
