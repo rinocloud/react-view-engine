@@ -1,32 +1,76 @@
 {
-  "name": "react-view-engine",
-  "version": "1.0.0",
-  "description": "An express.js view engine for server and client side react",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/eoinmurray/react-view-engine"
-  },
-  "keywords": [
-    "react.js",
-    "express.js",
-    "views",
-    "server",
-    "client",
-    "server-side-rendering"
+  "_args": [
+    [
+      "github:liveby/react-view-engine",
+      "/home/joel/LiveBy/WebApp"
+    ]
   ],
-  "dependencies" : {
-    "connect-inject" : "^0.3.2",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+  "_from": "liveby/react-view-engine",
+  "_id": "react-view-engine@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-view-engine",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/liveby/react-view-engine/master/package.json",
+      "gitUrl": "git://github.com/liveby/react-view-engine.git",
+      "httpsUrl": "git+https://github.com/liveby/react-view-engine.git",
+      "shortcut": "github:liveby/react-view-engine",
+      "ssh": "git@github.com:liveby/react-view-engine.git",
+      "sshUrl": "git+ssh://git@github.com/liveby/react-view-engine.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "github:liveby/react-view-engine",
+    "rawSpec": "github:liveby/react-view-engine",
+    "scope": null,
+    "spec": "github:liveby/react-view-engine",
+    "type": "hosted"
   },
-  "author": "eoinmurray",
-  "license": "ISC",
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git://github.com/liveby/react-view-engine.git#8ad40533e40a08007b5abc62460f85de455078a5",
+  "_shasum": "8015df578309966428fa84f2db0748887d1ed6ab",
+  "_shrinkwrap": null,
+  "_spec": "github:liveby/react-view-engine",
+  "_where": "/home/joel/LiveBy/WebApp",
+  "author": {
+    "name": "eoinmurray"
+  },
   "bugs": {
     "url": "https://github.com/eoinmurray/react-view-engine/issues"
   },
-  "homepage": "https://github.com/eoinmurray/react-view-engine"
+  "dependencies": {
+    "connect-inject": "^0.3.2",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "description": "An express.js view engine for server and client side react",
+  "devDependencies": {},
+  "gitHead": "8ad40533e40a08007b5abc62460f85de455078a5",
+  "homepage": "https://github.com/eoinmurray/react-view-engine",
+  "keywords": [
+    "client",
+    "express.js",
+    "react.js",
+    "server",
+    "server-side-rendering",
+    "views"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "react-view-engine",
+  "optionalDependencies": {},
+  "readme": "\nThis is a library for allowing server and client side rendering of react components.\n\n    npm install react-view-engine --save\n\nthen in your express ```app.js```\n\n    var engine = require('react-view-engine');\n\n    // Use this function to initialize node-jsx, if your react files are .jsx\n    engine.initJSX()\n    //Or use Babel-register\n    // require('babel-register')({extensions: ['js', 'jsx']})\n\n    app.engine('js', engine.engine);\n    \n    // Normal express view stuff\n    app.set('views', path.join(__dirname, 'public', 'javascripts'));\n    app.set('view engine', 'jsx');\n    app.set('view', engine.view)\nfrom then on you can use the normal ```res.render``` function of express.\n\nThe react view must be loaded normally to the clientside somewhere.\n\nIn your react app you must add the ```loadProps(View, layout)``` function to the global object if you want to load the view props on the clientside.\n\n    /**\n     * @jsx React.DOM\n     * client-app.jsx\n    */\n\n    var React = require('react');\n\n    var ClientApp = React.createClass({\n      render: function() {\n        return (\n          <html>\n            <head>\n              <script src=\"/js/client.js\"/>\n            </head>\n            <body>\n              <h1>{this.props.name}</h1>\n            </body>\n          </html>\n        );\n      }\n    });\n\n    module.exports = ClientApp;\n\n\n\n    /**\n     * app.jsx\n    */\n    var ClientApp = require('./client-app');\n    var layout = require('./layout');\n    var ReactDOM = require('react-dom');\n    var React = require('react');\n\n    function loadProps(name, layout){\n        var rootComponent = require('./'+name);\n        ReactDOM.render(<rootComponent />, document)\n    }\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eoinmurray/react-view-engine.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
 }
