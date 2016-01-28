@@ -1,7 +1,10 @@
 var path = require('path')
 function View(name, options){
-	
-	options.path = path.join(options.root, name)
+	if(typeof options.root === 'string') {
+		options.path = path.join(options.root, name)
+	}else{
+		options.path = options.root
+	}
 	//this.path = options.path
         //this.root = options.root
 	//this.defaultEngine = options.defaultEngine
