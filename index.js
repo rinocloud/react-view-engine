@@ -23,7 +23,7 @@ function cleanOptions(options) {
 }
 
 
-function handler(html, name, options) {
+function handler(html, name, options, layout) {
     var script = [
         '<script type="application/json" id="props_' + name + '">',
         JSON.stringify(options),
@@ -64,7 +64,7 @@ module.exports = function engine(l) {
       var clientApp = React.createFactory(client)(data)
       var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
       var markup = render(Template)
-      markup = '<!DOCTYPE html>' + handler(markup, name, options)
+      markup = '<!DOCTYPE html>' + handler(markup, name, options, layout)
       return callback(null, markup)
     }catch(error){
       return callback(error)
