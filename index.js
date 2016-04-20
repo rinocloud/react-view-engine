@@ -29,7 +29,7 @@ function handler(html, name, options, layout) {
         JSON.stringify(options),
         '</script>',
         '<script>',
-        "window.addEventListener('load', function(){",
+        "window.addEventListener('DOMContentLoaded', function(){",
         "  var props = JSON.parse(document.getElementById('props_" + name + "').innerHTML)",
         "  loadProps('" + name + "', '" + layout + "', props)",
         "})",
