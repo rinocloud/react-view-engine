@@ -19,7 +19,6 @@
     "server-side-rendering"
   ],
   "peerDependencies" : {
-    "connect-inject" : "^0.3.2",
     "react": "^0.14.3",
     "react-dom": "^0.14.3"
   },
