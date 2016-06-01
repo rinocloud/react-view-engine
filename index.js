@@ -26,12 +26,14 @@ function cleanOptions(options) {
 function handler(html, name, options, layout) {
     var script = [
         '<script type="application/json" id="props_' + name + '">',
-        JSON.stringify(options),
+          JSON.stringify(options),
         '</script>',
         '<script>',
         "window.addEventListener('DOMContentLoaded', function(){",
-        "  var props = JSON.parse(document.getElementById('props_" + name + "').innerHTML)",
-        "  loadProps('" + name + "', '" + layout + "', props)",
+        "  if(window.loadProps){",
+        "    var props = JSON.parse(document.getElementById('props_" + name + "').innerHTML);",
+        "    loadProps('" + name + "', props, '" + layout + "');",
+        "  }",
         "})",
         '</script>'
     ].join('\n')
@@ -39,18 +41,17 @@ function handler(html, name, options, layout) {
 
 }
 
-module.exports = function engine(l) {
-  var layout = l
+module.exports = function engine(opts) {
+  opts = opts || {}
+  var layout = opts.layout
   require('babel-register')({
-    extensions: ['.jsx', '.js'],
-    sourceMaps: true
+    extensions: opts.extensions || ['.jsx', '.js'],
   })
+
   return function (filePath, options, callback) {
     try {
-      delete require.cache[require.resolve(filePath)]
       if (layout) {
         var layoutPath = this.lookup(layout + ".jsx")
-        delete require.cache[require.resolve(layoutPath)]
         var Layout = getComponent(layoutPath)
       }
       var client = getComponent(filePath)
@@ -59,12 +60,13 @@ module.exports = function engine(l) {
       } else {
         var render = ReactDOMServer.renderToString
       }
+
       var name = this.name
       var data = cleanOptions(options)
       var clientApp = React.createFactory(client)(data)
       var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
       var markup = render(Template)
-      markup = '<!DOCTYPE html>' + handler(markup, name, options, layout)
+      markup = (opts.doctype || '<!DOCTYPE html>') + handler(markup, name, options, layout)
       return callback(null, markup)
     }catch(error){
       return callback(error)
