@@ -1,6 +1,6 @@
 {
   "name": "react-view-engine",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An express.js view engine for server and client side react",
   "main": "index.js",
   "scripts": {
@@ -18,10 +18,10 @@
     "client",
     "server-side-rendering"
   ],
-  "peerDependencies" : {
+  "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
-},
+  },
   "author": "eoinmurray",
   "license": "ISC",
   "bugs": {
