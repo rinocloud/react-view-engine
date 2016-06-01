@@ -18,6 +18,9 @@
     "client",
     "server-side-rendering"
   ],
+  "dependencies": {
+    "babel-register": "6.3.13"
+  },
   "peerDependencies": {
     "react": "^0.14.0 || ^15.0.0",
     "react-dom": "^0.14.0 || ^15.0.0"
