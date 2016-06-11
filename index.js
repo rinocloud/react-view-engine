@@ -1,47 +1,75 @@
 
-var react       = require('react')
-var inject      = require('connect-inject')
-var path        = require('path')
-var fs          = require('fs')
+var React = require('react')
+var ReactDOMServer = require('react-dom/server')
+var path = require('path')
 
-exports = module.exports = loader = {
+function getComponent(file) {
+    var r = require(file);
+    if (r.__esModule && r.default) {
+        return r.default
+    } else {
+        return r
+    }
+}
 
-    list : [],
+function cleanOptions(options) {
+    var opts = options
+    delete opts['settings']
+    delete opts['_locals']
+    delete opts['_csrf']
+    delete opts['enrouten']
+    delete opts['cache']
+    return opts
+}
 
-    initJSX : function(){
-        return require('node-jsx').install();
-    },
 
-    engine : function (filePath, options, callback){
-        delete require.cache[require.resolve(filePath)]
-        delete options['settings']
-        
+function handler(html, name, options, layout) {
+    var script = [
+        '<script type="application/json" id="props_' + name + '">',
+          JSON.stringify(options),
+        '</script>',
+        '<script>',
+        "window.addEventListener('DOMContentLoaded', function(){",
+        "  if(window.loadProps){",
+        "    var props = JSON.parse(document.getElementById('props_" + name + "').innerHTML);",
+        "    loadProps('" + name + "', props, '" + layout + "');",
+        "  }",
+        "})",
+        '</script>'
+    ].join('\n')
+    return html.replace('</body>', script + '</body>')
 
-        var client = require(filePath)
-        var clientApp = react.createFactory(client)(options)
-        var name = client.displayName;
-        var markup = react.renderToString(clientApp);
+}
 
-        var props = '<script type="application/json" id="props_'+name+'">'+JSON.stringify(options)+'</script>'
-        markup = '<html>' + props + markup +'</html>';
+module.exports = function engine(opts) {
+  opts = opts || {}
+  var layout = opts.layout
+  require('babel-register')({
+    extensions: opts.extensions || ['.jsx', '.js'],
+  })
 
-        return callback(null, markup)
-    },
+  return function (filePath, options, callback) {
+    try {
+      if (layout) {
+        var layoutPath = this.lookup(layout + ".jsx")
+        var Layout = getComponent(layoutPath)
+      }
+      var client = getComponent(filePath)
+      if (options.noHashes) {
+        var render = ReactDOMServer.renderToStaticMarkup
+      } else {
+        var render = ReactDOMServer.renderToString
+      }
 
-    handler : function(req, res, next){
-        var script = [
-            '<script>',
-            'window.loadProps = function(App, name){',
-                'var React = require("react")',
-                'var Component = React.createFactory(App);',
-                'var props = JSON.parse(document.getElementById("props_" + name).innerHTML)',
-                'React.render(Component(props), document);',
-                'delete App',
-            '}',
-            '</script>'
-        ].join('\n')
-
-        return inject({snippet : script})(req, res, next)
-    },
-
+      var name = this.name
+      var data = cleanOptions(options)
+      var clientApp = React.createFactory(client)(data)
+      var Template = Layout ? React.createFactory(Layout)(data, clientApp) : clientApp
+      var markup = render(Template)
+      markup = (opts.doctype || '<!DOCTYPE html>') + handler(markup, name, options, layout)
+      return callback(null, markup)
+    }catch(error){
+      return callback(error)
+    }
+  }
 }
